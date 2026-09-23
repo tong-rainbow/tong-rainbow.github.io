@@ -207,8 +207,8 @@
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-09-23</span>
-        <span><span class="icon-pencil"></span>295 words</span>
-        <span><span class="icon-clock"></span>2 mins</span>
+        <span><span class="icon-pencil"></span>177 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
       </div>
       <h2 class="post-title">报错注入</h2>
       <article class="post-article">
@@ -216,9 +216,23 @@
 在CTF2中,sqil-labs,less-5页面不会回显数据，只会在你注入成功时显示You are in …….，失败时什么都没有。这种关卡通常需要用到报错注入（不会回显数据）
 ##二.尝试与发现
 固定输入?id&amp;#x3D;1，加上‘，?id&amp;#x3D;1’,发现报错，然后用–+注释掉后面的东西，即?id&amp;#x3D;1’+–+,恢复正常，报错注入前不需要先ORDER BY ,尝试报错注入
-![报错注入截图] (https://github.com/tong-rainbow/blog-images/blob/main/1.png)
+
 ##三.尝试结果
-![结果] (ht
+
+##四.详细步骤
+
+
+
+
+
+
+##五.若结果无法完全展示
+可以用到substr
+)
+
+##小结
+第一次学到报错注入，感觉有点难，但是很有意思！可以再接再厉
+
       </article>
     </div>
   </div>
@@ -281,10 +295,10 @@ Run server1$ hexo ser
     </div>
       <div>
         <span class="icon-brush"></span>
-        370
+        252
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:04
+        00:03
       </div>
       <div>
         <span class="icon-eye"></span>

@@ -22,11 +22,22 @@
 <meta property="og:site_name" content="Rainbow&#39;s Blog">
 <meta property="og:description" content="报错注入##一.题目概述 在CTF2中,sqil-labs,less-5页面不会回显数据，只会在你注入成功时显示You are in …….，失败时什么都没有。这种关卡通常需要用到报错注入（不会回显数据） ##二.尝试与发现 固定输入?id&#x3D;1，加上‘，?id&#x3D;1’,发现报错，然后用–+注释掉后面的东西，即?id&#x3D;1’+–+,恢复正常，报错注入前不需要先ORDER B">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/1.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/2.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/3.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/4.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/5.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/6.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/7.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/8.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/9.png">
+<meta property="og:image" content="https://github.com/tong-rainbow/blog-images/blob/main/10.png">
 <meta property="article:published_time" content="2026-09-23T09:57:59.000Z">
-<meta property="article:modified_time" content="2026-09-23T14:50:38.763Z">
+<meta property="article:modified_time" content="2026-09-23T14:57:40.174Z">
 <meta property="article:author" content="tong-rainbow">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/tong-rainbow/blog-images/blob/main/1.png">
     <link rel="alternate" href="/atom.xml" title="Rainbow's Blog" type="application/atom+xml">
     <link rel="shortcut icon" href="/favicon.png">
   
@@ -229,20 +240,20 @@
 <p>在CTF2中,sqil-labs,less-5页面不会回显数据，只会在你注入成功时显示You are in …….，失败时什么都没有。这种关卡通常需要用到报错注入（不会回显数据）</p>
 <p>##二.尝试与发现</p>
 <p>固定输入?id&#x3D;1，加上‘，?id&#x3D;1’,发现报错，然后用–+注释掉后面的东西，即?id&#x3D;1’+–+,恢复正常，报错注入前不需要先ORDER BY ,尝试报错注入</p>
-<p>![报错注入截图] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/1.png">https://github.com/tong-rainbow/blog-images/blob/main/1.png</a>)</p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/1.png" alt="报错注入截图"></p>
 <p>##三.尝试结果</p>
-<p>![结果] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/2.png">https://github.com/tong-rainbow/blog-images/blob/main/2.png</a>)</p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/2.png" alt="结果"></p>
 <p>##四.详细步骤</p>
-<p>![] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/3.png">https://github.com/tong-rainbow/blog-images/blob/main/3.png</a>)</p>
-<p>![] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/4.png">https://github.com/tong-rainbow/blog-images/blob/main/4.png</a>)</p>
-<p>![] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/5.png">https://github.com/tong-rainbow/blog-images/blob/main/5.png</a>)</p>
-<p>![] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/6.png">https://github.com/tong-rainbow/blog-images/blob/main/6.png</a>)</p>
-<p>![] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/7.png">https://github.com/tong-rainbow/blog-images/blob/main/7.png</a>)</p>
-<p>![] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/8.png">https://github.com/tong-rainbow/blog-images/blob/main/8.png</a>)</p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/3.png"></p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/4.png"></p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/5.png"></p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/6.png"></p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/7.png"></p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/8.png"></p>
 <p>##五.若结果无法完全展示</p>
 <p>可以用到substr</p>
-<p>![] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/9.png">https://github.com/tong-rainbow/blog-images/blob/main/9.png</a>))</p>
-<p>![] (<a target="_blank" rel="noopener" href="https://github.com/tong-rainbow/blog-images/blob/main/10.png">https://github.com/tong-rainbow/blog-images/blob/main/10.png</a>))</p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/9.png">)</p>
+<p><img src="https://github.com/tong-rainbow/blog-images/blob/main/10.png"></p>
 <p>##小结</p>
 <p>第一次学到报错注入，感觉有点难，但是很有意思！可以再接再厉</p>
 
@@ -283,10 +294,10 @@
     </div>
       <div>
         <span class="icon-brush"></span>
-        370
+        252
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:04
+        00:03
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -434,9 +445,9 @@
           url: "http://example.com/2026/09/23/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/",
           excerpt: "",
           description: "",
-          stripContent: "报错注入##一.题目概述 在CTF2中,sqil-labs,less-5页面不会回显数据，只会在你注入成功时显示You are in …….，失败时什么都没有。这种关卡通常需要用到报错注入（不会回显数据） ##二.尝试与发现 固定输入?id&amp;#x3D;1，加上‘，?id&amp;#x3D;1’,发现报错，然后用–+注释掉后面的东西，即?id&amp;#x3D;1’+–+,恢复正常，报错注入前不需要先ORDER BY ,尝试报错注入 ![报错注入截图] (https://github.com/tong-rainb",
+          stripContent: "报错注入##一.题目概述 在CTF2中,sqil-labs,less-5页面不会回显数据，只会在你注入成功时显示You are in …….，失败时什么都没有。这种关卡通常需要用到报错注入（不会回显数据） ##二.尝试与发现 固定输入?id&amp;#x3D;1，加上‘，?id&amp;#x3D;1’,发现报错，然后用–+注释掉后面的东西，即?id&amp;#x3D;1’+–+,恢复正常，报错注入前不需要先ORDER BY ,尝试报错注入  ##三.尝试结果  ##四.详细步骤       ##五.若结果无法完全展示 ",
           date: "Wed Sep 23 2026 17:57:59 GMT+0800",
-          updated: "Wed Sep 23 2026 22:50:38 GMT+0800",
+          updated: "Wed Sep 23 2026 22:57:40 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
