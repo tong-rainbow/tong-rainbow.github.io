@@ -147,7 +147,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">4</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -200,8 +200,36 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/09/23/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" aria-label="报错注入" title="报错注入"></a>
+      <a class="post-link" href="/2026/09/25/sql_blind/" aria-label="布尔注入（盲注）" title="布尔注入（盲注）"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="布尔注入（盲注）" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-09-25</span>
+        <span><span class="icon-pencil"></span>308 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
+      </div>
+      <h2 class="post-title">布尔注入（盲注）</h2>
+      <article class="post-article">
+          ##一.题目概述
+在CTF2中，sqli-labs，less-8是一道考验布尔注入的题，如果条件正确会显示You are in………..，若条件为错不会有回显，凭借这个可以看出本题要盲注（二分法）
+##二.方法（主要依靠脚本或者sqlmap）
+在ASCII的基础上运用二分法提高效率（穷举效率慢）
+
+脚本
+
+爆库名
+爆表名(select+group_concat(table_name)+from+information_schema.tables+where+table_schema&amp;#x3D;’security’+limit+0,1)
+爆字段(select+group_concat(colum
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/09/23/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" aria-label="报错注入" title="报错注入"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="报错注入" class="lazyload">
     </div>
     <div class="post-info">
@@ -237,9 +265,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/09/23/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" aria-label="我的第一篇博客文章" title="我的第一篇博客文章"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="我的第一篇博客文章" class="lazyload">
     </div>
     <div class="post-info">
@@ -256,9 +284,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/09/23/hello-world/" aria-label="Hello World" title="Hello World"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Hello World" class="lazyload">
     </div>
     <div class="post-info">
@@ -294,10 +322,10 @@ Run server1$ hexo ser
     </div>
       <div>
         <span class="icon-brush"></span>
-        278
+        586
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:03
+        00:05
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -325,7 +353,7 @@ Run server1$ hexo ser
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">4</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
