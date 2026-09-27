@@ -200,8 +200,38 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/09/25/sql_blind/" aria-label="布尔注入（盲注）" title="布尔注入（盲注）"></a>
+      <a class="post-link" href="/2026/09/27/%E6%97%B6%E9%97%B4%E6%B3%A8%E5%85%A5%EF%BC%88%E7%9B%B2%E6%B3%A8%EF%BC%89/" aria-label="时间注入（盲注）" title="时间注入（盲注）"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="时间注入（盲注）" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-09-27</span>
+        <span><span class="icon-pencil"></span>286 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
+      </div>
+      <h2 class="post-title">时间注入（盲注）</h2>
+      <article class="post-article">
+          时间注入（盲注）##一.题目概述
+页面回显只有You are in………..，无从下手，只能尝试时间注入，观察页面访问的时间
+
+
+##二.Python脚本与sqlmap运用
+
+
+sqlmap -u “http://a4676e5cb2bbf2db6a7365b7.http-ctf2.dasctf.com/Less-9/?id=1“ –technique&amp;#x3D;T –dbs –batch –time-sec&amp;#x3D;1 –threads&amp;#x3D;10 –dbms&amp;#x3D;mysql
+
+
+##三.sql手动时间注入的方法
+?id&amp;#x3D;1’ AND IF(LENGTH(databas
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/09/25/%E5%B8%83%E5%B0%94%E6%B3%A8%E5%85%A5%EF%BC%88%E7%9B%B2%E6%B3%A8%EF%BC%89/" aria-label="布尔注入（盲注）" title="布尔注入（盲注）"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="布尔注入（盲注）" class="lazyload">
     </div>
     <div class="post-info">
@@ -227,9 +257,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/09/23/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" aria-label="报错注入" title="报错注入"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="报错注入" class="lazyload">
     </div>
     <div class="post-info">
@@ -260,25 +290,6 @@
 
 ##小结
 第一次学到报错注入，感觉有点难，但是很有意思！图片问题终于真正
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/09/23/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" aria-label="我的第一篇博客文章" title="我的第一篇博客文章"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="我的第一篇博客文章" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-09-23</span>
-        <span><span class="icon-pencil"></span>0 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title">我的第一篇博客文章</h2>
-      <article class="post-article">
-          
       </article>
     </div>
   </div>
@@ -322,10 +333,10 @@ Run server1$ hexo ser
     </div>
       <div>
         <span class="icon-brush"></span>
-        586
+        872
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:05
+        00:06
       </div>
       <div>
         <span class="icon-eye"></span>
