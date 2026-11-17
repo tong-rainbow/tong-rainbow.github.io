@@ -22,69 +22,70 @@
 <meta property="og:site_name" content="Rainbow&#39;s Blog">
 <meta property="og:description" content="SQLi-labs小结第一步：判断注入的位置（可能的情况较多）1.GET请求，注入点在URL(统一资源定位符）即我们所说的网址，GET请求的数据存放在请求行里 拓展：一个完整的HTTP报文从上向下由四个部分组成：请求行(Request Line)、请求头、空行、请求体（GET请求数据存放在请求头，POST请求的数据放在请求体）  “?”问号是分隔符，”&amp;”是参数连接符（当你要传递多个参数时">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115153638433.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115160500550.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115160610580.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115160912856.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115161456723.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115163050801.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115161112923.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115161157843.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115163237474.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115162327524.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115163354230.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115163601620.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115171622227.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115172333109.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115172348462.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115182316870.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115182400120.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115182853580.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115182911338.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115183307027.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115183331856.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115183352746.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115221818089.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115221859555.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115222145135.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115222448627.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115222512182.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115224844817.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115224902961.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115224148882.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115230742961.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115230800284.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115225520750.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116124742496.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116125141428.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116125942480.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116131323448.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116131853954.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116132653506.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116132619167.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116133057393.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116133121243.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116234449772.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116234516285.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117001804023.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117125536274.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117130255890.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117130453758.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117130128373.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117131457843.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117124851662.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117002400587.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117184213081.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117184202770.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117185130609.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117125125142.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117125447187.png">
-<meta property="og:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117125328516.png">
+<meta property="og:image" content="http://example.com/images/sqli/1.png">
+<meta property="og:image" content="http://example.com/images/sqli/2.png">
+<meta property="og:image" content="http://example.com/images/sqli/3.png">
+<meta property="og:image" content="http://example.com/images/sqli/4.png">
+<meta property="og:image" content="http://example.com/images/sqli/5.png">
+<meta property="og:image" content="http://example.com/images/sqli/58.png">
+<meta property="og:image" content="http://example.com/images/sqli/6.png">
+<meta property="og:image" content="http://example.com/images/sqli/7.png">
+<meta property="og:image" content="http://example.com/images/sqli/8.png">
+<meta property="og:image" content="http://example.com/images/sqli/9.png">
+<meta property="og:image" content="http://example.com/images/sqli/10.png">
+<meta property="og:image" content="http://example.com/images/sqli/11.png">
+<meta property="og:image" content="http://example.com/images/sqli/12.png">
+<meta property="og:image" content="http://example.com/images/sqli/13.png">
+<meta property="og:image" content="http://example.com/images/sqli/14.png">
+<meta property="og:image" content="http://example.com/images/sqli/15.png">
+<meta property="og:image" content="http://example.com/images/sqli/16.png">
+<meta property="og:image" content="http://example.com/images/sqli/17.png">
+<meta property="og:image" content="http://example.com/images/sqli/18.png">
+<meta property="og:image" content="http://example.com/images/sqli/19.png">
+<meta property="og:image" content="http://example.com/images/sqli/20.png">
+<meta property="og:image" content="http://example.com/images/sqli/21.png">
+<meta property="og:image" content="http://example.com/images/sqli/22.png">
+<meta property="og:image" content="http://example.com/images/sqli/23.png">
+<meta property="og:image" content="http://example.com/images/sqli/24.png">
+<meta property="og:image" content="http://example.com/images/sqli/25.png">
+<meta property="og:image" content="http://example.com/images/sqli/26.png">
+<meta property="og:image" content="http://example.com/images/sqli/27.png">
+<meta property="og:image" content="http://example.com/images/sqli/28.png">
+<meta property="og:image" content="http://example.com/images/sqli/29.png">
+<meta property="og:image" content="http://example.com/images/sqli/30.png">
+<meta property="og:image" content="http://example.com/images/sqli/31.png">
+<meta property="og:image" content="http://example.com/images/sqli/32.png">
+<meta property="og:image" content="http://example.com/images/sqli/33.png">
+<meta property="og:image" content="http://example.com/images/sqli/34.png">
+<meta property="og:image" content="http://example.com/images/sqli/35.png">
+<meta property="og:image" content="http://example.com/images/sqli/36.png">
+<meta property="og:image" content="http://example.com/images/sqli/37.png">
+<meta property="og:image" content="http://example.com/images/sqli/38.png">
+<meta property="og:image" content="http://example.com/images/sqli/39.png">
+<meta property="og:image" content="http://example.com/images/sqli/40.png">
+<meta property="og:image" content="http://example.com/images/sqli/41.png">
+<meta property="og:image" content="http://example.com/images/sqli/42.png">
+<meta property="og:image" content="http://example.com/images/sqli/43.png">
+<meta property="og:image" content="http://example.com/images/sqli/44.png">
+<meta property="og:image" content="http://example.com/images/sqli/45.png">
+<meta property="og:image" content="http://example.com/images/sqli/46.png">
+<meta property="og:image" content="http://example.com/images/sqli/47.png">
+<meta property="og:image" content="http://example.com/images/sqli/48.png">
+<meta property="og:image" content="http://example.com/images/sqli/59.png">
+<meta property="og:image" content="http://example.com/images/sqli/49.png">
+<meta property="og:image" content="http://example.com/images/sqli/50.png">
+<meta property="og:image" content="http://example.com/images/sqli/51.png">
+<meta property="og:image" content="http://example.com/images/sqli/52.png">
+<meta property="og:image" content="http://example.com/images/sqli/53.png">
+<meta property="og:image" content="http://example.com/images/sqli/54.png">
+<meta property="og:image" content="http://example.com/images/sqli/55.png">
+<meta property="og:image" content="http://example.com/images/sqli/56.png">
+<meta property="og:image" content="http://example.com/images/sqli/57.png">
 <meta property="article:published_time" content="2026-11-13T04:31:03.802Z">
-<meta property="article:modified_time" content="2026-11-17T10:55:15.715Z">
+<meta property="article:modified_time" content="2026-11-17T12:01:58.105Z">
 <meta property="article:author" content="tong-rainbow">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115153638433.png">
+<meta name="twitter:image" content="http://example.com/images/sqli/1.png">
     <link rel="alternate" href="/atom.xml" title="Rainbow's Blog" type="application/atom+xml">
     <link rel="shortcut icon" href="/favicon.png">
   
@@ -213,7 +214,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">5</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -285,74 +286,74 @@
     <div class="e-content article-entry" itemprop="articleBody">
         <h1 id="SQLi-labs小结"><a href="#SQLi-labs小结" class="headerlink" title="SQLi-labs小结"></a>SQLi-labs小结</h1><h2 id="第一步：判断注入的位置（可能的情况较多）"><a href="#第一步：判断注入的位置（可能的情况较多）" class="headerlink" title="第一步：判断注入的位置（可能的情况较多）"></a>第一步：判断注入的位置（可能的情况较多）</h2><p>1.GET请求，注入点在URL(统一资源定位符）即我们所说的网址，GET请求的数据存放在请求行里</p>
 <p>拓展：一个完整的HTTP报文从上向下由四个部分组成：请求行(Request Line)、请求头、空行、请求体（GET请求数据存放在请求头，POST请求的数据放在请求体）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115153638433.png" alt="image-20261115153638433"></p>
+<p><img src="/images/sqli/1.png" alt="1"></p>
 <p>“?”问号是分隔符，”&amp;”是参数连接符（当你要传递多个参数时，用来把不同的参数隔开）</p>
 <p>2.POST请求，注入点在请求体中（记住：请求体与请求头中间有空行隔开）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115160500550.png" alt="image-20261115160500550"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115160610580.png" alt="image-20261115160610580"></p>
+<p><img src="/images/sqli/2.png" alt="2"></p>
+<p><img src="/images/sqli/3.png" alt="3"></p>
 <p>注入点可能在Username（一般），也可能是Password，下图中Username中的数据被严格处理，反而Password中的数据并未过多处理</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115160912856.png" alt="image-20261115160912856"></p>
+<p><img src="/images/sqli/4.png" alt="image-20261115160912856"></p>
 <p>3.注入点在User-Agent（HTTP请求中一个非常重要的请求头字段，告诉服务器我是谁，我用的是什么操作系统，什么浏览器）如下图</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115161456723.png" alt="image-20261115161456723"></p>
+<p><img src="/images/sqli/5.png" alt="image-20261115161456723"></p>
 <p>由下图可知，正常登陆框被严格过滤，很难进行sql注入，漏洞在于$_SERVER[‘HTTP_USER_AGENT’],后端php中使用超全局变量获取User-Agent，并且未作任何过滤直接出现在INSERT语句中（前提：需要成功登录Dumb,Dumb）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115163050801.png" alt="image-20261115163050801"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115161112923.png" alt="image-20261115161112923"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115161157843.png" alt="image-20261115161157843"></p>
+<p><img src="/images/sqli/58.png" alt="image-20261115163050801"></p>
+<p><img src="/images/sqli/6.png" alt="image-20261115161112923"></p>
+<p><img src="/images/sqli/7.png" alt="image-20261115161157843"></p>
 <p>4.注入点在Referer（在请求头中，用来告诉服务器“我是从哪个网页点链接跳过来的”）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115163237474.png" alt="image-20261115163237474"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115162327524.png" alt="image-20261115162327524"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115163354230.png" alt="image-20261115163354230"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115163601620.png" alt="image-20261115163601620"></p>
+<p><img src="/images/sqli/8.png" alt="image-20261115163237474"></p>
+<p><img src="/images/sqli/9.png" alt="image-20261115162327524"></p>
+<p><img src="/images/sqli/10.png" alt="image-20261115163354230"></p>
+<p><img src="/images/sqli/11.png" alt="image-20261115163601620"></p>
 <p>5.注入点在Cookie中（HTTP是无状态的协议，Cookie的作用相当于在登录成功之后，记住你的身份，只要登录成功之后，携带Cookie，服务器就能认出你），Username和Password被严格过滤，无法直接注入。从后端php发现setcookie，若是一开始没有Cookie就把uname设成Cookie（前提是用一个账号顺利登录），登陆之后，只要再次发送请求就会自动携带这个Cookie，这次因为你之前已经成功登录，这次$cookee&#x3D;$_COOKIE[‘uname’]，没有经过任何过滤，这次用bp抓包之后就可以修改Cookie来达到注入的目的</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115171622227.png" alt="image-20261115171622227"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115172333109.png" alt="image-20261115172333109"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115172348462.png" alt="image-20261115172348462"></p>
+<p><img src="/images/sqli/12.png" alt="image-20261115171622227"></p>
+<p><img src="/images/sqli/13.png" alt="image-20261115172333109"></p>
+<p><img src="/images/sqli/14.png" alt="image-20261115172348462"></p>
 <h2 id="第二步：判断注入类型"><a href="#第二步：判断注入类型" class="headerlink" title="第二步：判断注入类型"></a>第二步：判断注入类型</h2><p>1.数字型注入</p>
 <p>主要看后端sql语句中查询值是否有被引号包裹（单引号或者双引号），见下图，$_GET获取的值直接拼接在 id&#x3D; 后面，未作任何过滤，数字型注入无需闭合，因而数字型注入</p>
 <p>id&#x3D;1 and 1&#x3D;1+–+</p>
 <p>id&#x3D;1 and 1&#x3D;2+–+</p>
 <p>判断是否有回显</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115182316870.png" alt="image-20261115182316870"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115182400120.png" alt="image-20261115182400120"></p>
+<p><img src="/images/sqli/15.png" alt="image-20261115182316870"></p>
+<p><img src="/images/sqli/16.png" alt="image-20261115182400120"></p>
 <p>2.字符型注入</p>
 <p>主要看后端sql语句是否直接拼接数据（例如$id&#x3D;$_GET[‘id’]）,如下图，这种情况下需要闭合</p>
 <p>id&#x3D;1’ and ‘1’&#x3D;’1’+–+</p>
 <p>id&#x3D;1’ and ‘1’&#x3D;’2’+–+</p>
 <p>观察回显</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115182853580.png" alt="image-20261115182853580"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115182911338.png" alt="image-20261115182911338"></p>
+<p><img src="/images/sqli/17.png" alt="image-20261115182853580"></p>
+<p><img src="/images/sqli/18.png" alt="image-20261115182911338"></p>
 <p>3.布尔盲注</p>
 <p>通过下图，我们可以发现，若sql语句正常，屏幕会出现“You are in…………”，若sql语句有误，则屏幕没有回显，类似这种回显只能用来判断语句对错的，我们用布尔注入来解决</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115183307027.png" alt="image-20261115183307027"></p>
+<p><img src="/images/sqli/19.png" alt="image-20261115183307027"></p>
 <p>布尔盲注的脚本</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115183331856.png" alt="image-20261115183331856"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115183352746.png" alt="image-20261115183352746"></p>
+<p><img src="/images/sqli/20.png" alt="image-20261115183331856"></p>
+<p><img src="/images/sqli/21.png" alt="image-20261115183352746"></p>
 <p>4.时间注入</p>
 <p>对于下图这种，无论对与错页面回显都一样的题目，我们用时间注入解决，关键技巧是if与sleep的运用</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115221818089.png" alt="image-20261115221818089"></p>
+<p><img src="/images/sqli/22.png" alt="image-20261115221818089"></p>
 <p>脚本</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115221859555.png" alt="image-20261115221859555"></p>
+<p><img src="/images/sqli/23.png" alt="image-20261115221859555"></p>
 <p>5.报错注入</p>
 <p>最常见的注入以及最常用的注入，优先判断。如下图，若sql语句有误，则错误原因会出现，我们用报错注入解决</p>
 <p>extractvalue(1,concat(0x7e,(select database()),0x7e))或者updatexml(1,concat(……),1)</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115222145135.png" alt="image-20261115222145135"></p>
+<p><img src="/images/sqli/24.png" alt="image-20261115222145135"></p>
 <p>6.联合查询注入(只能用在后端sql语句使用了select，若后端sql语句为insert或者update，则无法联合注入查询，用不了union select)</p>
 <p>如下图，当判断完是数字型注入还是字符型注入且页面有数据回显，我们常用联合注入查询。</p>
 <p>id&#x3D;1’ order by 3+–+（判断列数，使用联合查询前后列数应该一致）</p>
 <p>id&#x3D;-1’ union select 1,2,3+–+（小细节，只有当前面”id&#x3D;”不存在才能在回显中看到我们想要的结果，否则页面回显只会是正常的数据）</p>
 <p>id&#x3D;-1’ union select 1,2,database()+–+</p>
 <p>记住：information_schema.tables（包含所有表） information_schema.columns（包含所有字段） column_name（字段名） table_name（表名） table_schema（数据库名） information_schema(MYSQL自带的系统信息库) information_schema.schemata（所有数据库名）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115222448627.png" alt="image-20261115222448627"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115222512182.png" alt="image-20261115222512182"></p>
+<p><img src="/images/sqli/25.png" alt="image-20261115222448627"></p>
+<p><img src="/images/sqli/26.png" alt="image-20261115222512182"></p>
 <p>7.二次注入</p>
 <p>漏洞所在，从下图我们可以看出当你成功登录之后，带有Cookie，则更改密码时$username直接拼接并未做任何过滤，因此存在二次注入漏洞</p>
 <p>解题步骤</p>
 <p>（1）用admin’#作为用户名，密码随便</p>
 <p>（2）用刚刚注册的用户名与密码登录，出现下图</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115224844817.png" alt="image-20261115224844817"></p>
+<p><img src="/images/sqli/27.png" alt="image-20261115224844817"></p>
 <p>（3）更改密码，当我们在里面更改密码时已经利用漏洞更改管理员的密码，退出后，用我们更改的密码可以登录管理员admin的账号，如下图</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115224902961.png" alt="image-20261115224902961"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115224148882.png" alt="image-20261115224148882"></p>
+<p><img src="/images/sqli/28.png" alt="image-20261115224902961"></p>
+<p><img src="/images/sqli/29.png" alt="image-20261115224148882"></p>
 <p>8.堆叠注入</p>
 <p>后端php中出现mysqli_multi_query (多重查询)，允许一次性执行用分号隔开的多条语句“；”。</p>
 <p>知识点：mysqli_store_result 从MySQL服务器获取上一次查询产生的结果集（这里指multi_query执行的第一条查询）</p>
@@ -362,31 +363,31 @@
 <p>(拓展:update 表名 set 要改的字段名&#x3D;’更改的内容’ where ……定位</p>
 <p>insert into 表名(表里的字段名，用逗号隔开) values (与字段名个数一样，一一对应要插入的数据)</p>
 <p>delete from 表名  （where ……定位），若未定位，默认删除整张表）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115230742961.png" alt="image-20261115230742961"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115230800284.png" alt="image-20261115230800284"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261115225520750.png" alt="image-20261115225520750"></p>
+<p><img src="/images/sqli/30.png" alt="image-20261115230742961"></p>
+<p><img src="/images/sqli/31.png" alt="image-20261115230800284"></p>
+<p><img src="/images/sqli/32.png" alt="image-20261115225520750"></p>
 <h2 id="绕过方法以及注入技巧"><a href="#绕过方法以及注入技巧" class="headerlink" title="绕过方法以及注入技巧"></a>绕过方法以及注入技巧</h2><p>1.后端过滤注释符，方法：构造闭合,将两个引号都闭合</p>
 <p>id&#x3D;1’ and extractvalue(1,concat(0x7e,(select database()),0x7e)) and ‘1’&#x3D;’1</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116124742496.png" alt="image-20261116124742496"></p>
+<p><img src="/images/sqli/33.png" alt="image-20261116124742496"></p>
 <p>2.后端过滤or和and，注意观察，它只进行一次全局替换，方法：双写绕过或者使用逻辑符号代替|| or  &amp;&amp; and 例如：aandnd等等</p>
 <p>(知识点：（）括号最高优先级，算数运算符*、&#x2F;、%、+、-，比较运算符&#x3D;、&gt;,等等，逻辑非NOT、！，逻辑与AND、&amp;&amp;，逻辑或OR、||,其他操作符)</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116125141428.png" alt="image-20261116125141428"></p>
+<p><img src="/images/sqli/34.png" alt="image-20261116125141428"></p>
 <p>3.看后端黑名单，注释符，and和or，空格被过滤</p>
 <p>绕过空格的方法：()子查询,%a0(不间断空格),%0a(换行)，%09( Tab)，%0b(垂直Tab)，还有&#x2F;**&#x2F;(看情况使用，可以代替空格)</p>
 <p>（在一些MySQL中可用内敛注释绕过，&#x2F;*！……*&#x2F;）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116125942480.png" alt="image-20261116125942480"></p>
+<p><img src="/images/sqli/35.png" alt="image-20261116125942480"></p>
 <p>4.后端过滤了select,SELECT,union,UNION,Select,Union,可以通过大小写混合绕过</p>
 <p>（&#x2F;s 包含普通空格，制表符Tab，换行符，回车符）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116131323448.png" alt="image-20261116131323448"></p>
+<p><img src="/images/sqli/36.png" alt="image-20261116131323448"></p>
 <p>5.后端过滤union select且不区分大小写，无法大小写混合绕过，但是它是同时过滤union空白select，可以用%a0隔开</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116131853954.png" alt="image-20261116131853954"></p>
+<p><img src="/images/sqli/37.png" alt="image-20261116131853954"></p>
 <p>6.宽字节注入，后端过滤引号以及反斜杠，但是设置字符集为gbk，可以使用宽字节注入来“吃掉”反斜杠，如下图，后端强制在单引号和双引号前添加反斜杠转义令引号失效。</p>
 <p>1%df’ and extractvalue(1,concat(……))</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116132653506.png" alt="image-20261116132653506"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116132619167.png" alt="image-20261116132619167"></p>
+<p><img src="/images/sqli/38.png" alt="image-20261116132653506"></p>
+<p><img src="/images/sqli/39.png" alt="image-20261116132619167"></p>
 <p>7.参数污染whitelist只允许数字通过，java_implimentation将查询字符串按&amp;分隔开且默认只取第一个id（因为有break），PHP的$_GET[‘id’]默认取最后一个id&#x3D;，这就是漏洞所在，因为拼接进sql语句的是$_GET[‘id’]</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116133057393.png" alt="image-20261116133057393"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116133121243.png" alt="image-20261116133121243"></p>
+<p><img src="/images/sqli/40.png" alt="image-20261116133057393"></p>
+<p><img src="/images/sqli/41.png" alt="image-20261116133121243"></p>
 <p>8.order by注入，常用解法：报错注入和盲注（时间注入更常用一点）</p>
 <p>order by注入的难点：</p>
 <p>无法直接使用union select</p>
@@ -399,8 +400,8 @@
 <p>注意点：如果直接?sort&#x3D;1,if(…,sleep(5),sleep(0)),数据库为了搞清楚怎么排序，会对结果集中的每一行数据都执行一次（可以用来判断有多少条数据），因为ORDER BY的目的是“排序”，数据库必须为结果集中的每一行都计算出这个“排序依据”，才能对它们进行对比，ORDER BY后面接的数字不是常量而是“列序号”</p>
 <p>一般我们正常用子查询,(select 1 from (select sleep(3))x),(select 1 from (select if(…,sleep(5),sleep(0)))x)</p>
 <p>其中x为临时表名，因为from后面应该接表名，所有我们需要给(select sleep(5))查询结果的表命名，包装成为一个临时表</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116234449772.png" alt="image-20261116234449772"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261116234516285.png" alt="image-20261116234516285"></p>
+<p><img src="/images/sqli/42.png" alt="image-20261116234449772"></p>
+<p><img src="/images/sqli/43.png" alt="image-20261116234516285"></p>
 <p>补充：sleep()函数在MySQL中的设定就是执行成功返回0，实行失败或者被中断返回1</p>
 <p>在SQL的底层语法中，SELECT的本质并不是“查表”，而是一个“表达式求值器”，只要能算出来一个值的东西，SELECT都可以执行并把它输出</p>
 <h2 id="工具的使用"><a href="#工具的使用" class="headerlink" title="工具的使用"></a>工具的使用</h2><p>sqlmap是一个开源自动化SQL注入检测和利用的工具</p>
@@ -420,15 +421,16 @@
 <p>–columns（所有字段名） —C 字段名</p>
 <p>–tamper&#x3D;脚本名（加载tamper脚本，用来绕过过滤、WAF、关键字拦截）</p>
 <p>–dump（导出表里的数据也称脱库）</p>
-<h2 id="有趣的题目"><a href="#有趣的题目" class="headerlink" title="有趣的题目"></a>有趣的题目</h2><p>1.从下图可以看到这其实是数字型注入，有两个解法，一是通过构造?id&#x3D;1))+–+来闭合，二是直接?id&#x3D;1 and extractvalue(1,concat()), 有意思的一点是这样写也能正常执行，因为SQL语法中(),(()),是一样的效果，根据优先级，因而它会计算出括号内的and式子然后再拼接到语句中，这样反而能够执行<img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117001804023.png" alt="image-20261117001804023"></p>
+<h2 id="有趣的题目"><a href="#有趣的题目" class="headerlink" title="有趣的题目"></a>有趣的题目</h2><p>1.从下图可以看到这其实是数字型注入，有两个解法，一是通过构造?id&#x3D;1))+–+来闭合，二是直接?id&#x3D;1 and extractvalue(1,concat()), 有意思的一点是这样写也能正常执行，因为SQL语法中(),(()),是一样的效果，根据优先级，因而它会计算出括号内的and式子然后再拼接到语句中，这样反而能够执行<img src="/images/sqli/44.png" alt="image-20261117001804023"></p>
 <p>2.这道题考察的是一句话木马&lt;?php@eval($_POST[‘pass’])?&gt;(@错误抑制符，屏蔽报错，让木马更隐蔽)，涉及到一些高危内置函数，这边一并拓展</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117125536274.png" alt="image-20261117125536274"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117130255890.png" alt="image-20261117130255890"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117130453758.png" alt="image-20261117130453758">@@basedir  @@datadir</p>
+<p><img src="/images/sqli/45.png" alt="image-20261117125536274"></p>
+<p><img src="/images/sqli/46.png" alt="image-20261117130255890"></p>
+<p><img src="/images/sqli/47.png" alt="55"></p>
+<p><img src="/images/sqli/48.png" alt="image-20261117130453758">@@basedir  @@datadir</p>
 <p>into outfile ‘要写入文件的绝对路径’ 前提是允许写入（写两个反斜杠是为了转义）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117130128373.png" alt="image-20261117130128373"></p>
+<p><img src="/images/sqli/59.png" alt="image-20261117130128373"></p>
 <p>load_file(‘要读取的文件的绝对路径’)</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117131457843.png" alt="image-20261117131457843"></p>
+<p><img src="/images/sqli/49.png" alt="image-20261117131457843"></p>
 <p>(1)eval()：它就像是 PHP 里的一个“黑洞”。无论你塞进去什么字符串，它都会强行把这段字符串放进 PHP 的解析器里，把它当成真正的代码去跑一遍，然后返回结果。（把字符串当代码执行），eval()并不是一个真正的函数，而是一个“语言结构”</p>
 <p>(2)assert() 在编程中叫“断言”。它的初衷是给程序员调试代码用的。</p>
 <p>· 语法：assert(条件表达式)<br>· 作用：如果条件成立（返回 True），程序继续往下走；如果条件不成立（返回 False），程序会直接报错并中断执行<br>在PHP7.2之前可以把字符串当成代码执行<br>在PHP7.2,8.0之后只是一个普通断言函数</p>
@@ -490,21 +492,21 @@
 <p>(15)secure_file_priv：</p>
 <p>secure_file_priv 不是一个函数，而是 MySQL 的一个全局系统变量。它的核心作用是限制通过 SQL 语句（如 LOAD_FILE()、SELECT … INTO OUTFILE）进行的文件读写操作，将数据库的文件权限“圈禁”在指定目录内。</p>
 <p>secure_file_priv 不是一个函数，而是 MySQL 的一个全局系统变量。它的核心作用是限制通过 SQL 语句（如 LOAD_FILE()、SELECT … INTO OUTFILE）进行的文件读写操作，将数据库的文件权限“圈禁”在指定目录内。</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117124851662.png" alt="image-20261117124851662"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117002400587.png" alt="image-20261117002400587"></p>
+<p><img src="/images/sqli/50.png" alt="image-20261117124851662"></p>
+<p><img src="/images/sqli/51.png" alt="image-20261117002400587"></p>
 <p>3.由下图可以看出，查询的结果被定义一个数组，若?id&#x3D;1，展示的是数组内的Angelina和dhakkan,具有迷惑性，要么用报错注入，要么盲注，判断依据，当你发现你的sql注入语法没有问题，例如?id&#x3D;-1”) union select 1,2,3+–+, 但是页面回显却很奇怪时，可以大胆猜测后端可能定义了一个数组</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117184213081.png" alt="image-20261117184213081"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117184202770.png" alt="image-20261117184202770"></p>
+<p><img src="/images/sqli/52.png" alt="image-20261117184213081"></p>
+<p><img src="/images/sqli/53.png" alt="image-20261117184202770"></p>
 <p>4.这道题主要是base64_encode()的使用,具体需要用bp抓包，配合bp里的编码工具使用</p>
 <p>base64_encode(string $data)把原始二进制&#x2F;字符串编码成Base64文本</p>
 <p>base64_decode(string $data)解码</p>
 <p>（提示：这个并不属于加密）</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117185130609.png" alt="image-20261117185130609"></p>
+<p><img src="/images/sqli/54.png" alt="image-20261117185130609"></p>
 <h2 id="知识点补充（借鉴，嘿嘿嘿！）"><a href="#知识点补充（借鉴，嘿嘿嘿！）" class="headerlink" title="知识点补充（借鉴，嘿嘿嘿！）"></a>知识点补充（借鉴，嘿嘿嘿！）</h2><p>1.脚本</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117125125142.png" alt="image-20261117125125142"></p>
+<p><img src="/images/sqli/55.png" alt="image-20261117125125142"></p>
 <p>2.预处理语句绕过</p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117125447187.png" alt="image-20261117125447187"></p>
-<p><img src="C:\Users\guowe\AppData\Roaming\Typora\typora-user-images\image-20261117125328516.png" alt="image-20261117125328516"></p>
+<p><img src="/images/sqli/56.png" alt="image-20261117125447187"></p>
+<p><img src="/images/sqli/57.png" alt="image-20261117125328516"></p>
 
     </div>
     <footer class="article-footer">
@@ -514,11 +516,11 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="" class="lazyload">
-      <a href="/2026/10/18/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8%E9%A2%98%E7%9B%AE/" aria-label="Next: no title"  title="Next: no title"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="时间注入（盲注）" class="lazyload">
+      <a href="/2026/09/27/%E6%97%B6%E9%97%B4%E6%B3%A8%E5%85%A5%EF%BC%88%E7%9B%B2%E6%B3%A8%EF%BC%89/" aria-label="Next: 时间注入（盲注）"  title="Next: 时间注入（盲注）"></a>
       <div class="article-nav-caption">Next</div>
       <h3 class="article-nav-title">
-          (no title)
+          时间注入（盲注）
       </h3>
     </div>
   </nav>
@@ -541,10 +543,10 @@
     </div>
       <div>
         <span class="icon-brush"></span>
-        6k
+        5.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:27
+        00:23
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -577,7 +579,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">5</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -694,7 +696,7 @@
           description: "",
           stripContent: "SQLi-labs小结第一步：判断注入的位置（可能的情况较多）1.GET请求，注入点在URL(统一资源定位符）即我们所说的网址，GET请求的数据存放在请求行里 拓展：一个完整的HTTP报文从上向下由四个部分组成：请求行(Request Line)、请求头、空行、请求体（GET请求数据存放在请求头，POST请求的数据放在请求体）  “?”问号是分隔符，”&amp;amp;”是参数连接符（当你要传递多个参数时，用来把不同的参数隔开） 2.POST请求，注入点在请求体中（记住：请求体与请求头中间有空行隔开） ",
           date: "Fri Nov 13 2026 12:31:03 GMT+0800",
-          updated: "Tue Nov 17 2026 18:55:15 GMT+0800",
+          updated: "Tue Nov 17 2026 20:01:58 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
