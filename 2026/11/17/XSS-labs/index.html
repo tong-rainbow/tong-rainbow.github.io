@@ -1,0 +1,599 @@
+  <!DOCTYPE html>
+  <html lang="en"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    XSS-labs | Rainbow&#39;s Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="XSSXSS简介：跨站脚本（Cross-Site Scripting，XSS）是一种经常出现在 WEB 应用程序中的计算机安全漏洞，是由于 WEB 应用程序对用户的输入过滤不足而产生的。攻击者利用网站漏洞把恶意的脚本代码注入到网页中，当其他用户浏览这些网页时，就会执行其中的恶意代码，对受害用户可能采取 Cookies 资料窃取、会话劫持、钓鱼欺骗等各种攻击。 主要类型有：反射型 XSS、持久型 X">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS-labs">
+<meta property="og:url" content="http://example.com/2026/11/17/XSS-labs/index.html">
+<meta property="og:site_name" content="Rainbow&#39;s Blog">
+<meta property="og:description" content="XSSXSS简介：跨站脚本（Cross-Site Scripting，XSS）是一种经常出现在 WEB 应用程序中的计算机安全漏洞，是由于 WEB 应用程序对用户的输入过滤不足而产生的。攻击者利用网站漏洞把恶意的脚本代码注入到网页中，当其他用户浏览这些网页时，就会执行其中的恶意代码，对受害用户可能采取 Cookies 资料窃取、会话劫持、钓鱼欺骗等各种攻击。 主要类型有：反射型 XSS、持久型 X">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/xss-labs/1.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/2.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/3.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/4.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/5.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/6.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/7.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/8.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/9.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/10.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/11.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/12.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/13.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/14.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/15.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/16.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/17.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/18.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/19.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/20.png">
+<meta property="og:image" content="http://example.com/images/xss-labs/21.png">
+<meta property="article:published_time" content="2026-11-17T14:12:03.000Z">
+<meta property="article:modified_time" content="2026-11-18T09:24:55.541Z">
+<meta property="article:author" content="tong-rainbow">
+<meta property="article:tag" content="XSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/xss-labs/1.png">
+    <link rel="alternate" href="/atom.xml" title="Rainbow's Blog" type="application/atom+xml">
+    <link rel="shortcut icon" href="/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Home</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Archives</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">About</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Friend</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" aria-label="RSS Feed" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="XSS-labs">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">XSS-labs</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS"><span class="toc-number">1.</span> <span class="toc-text">XSS</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.png" data-sizes="auto" alt="tong-rainbow" class="lazyload">
+  <div class="sidebar-author-name">tong-rainbow</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">6</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-XSS-labs" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-11-17T14:12:03.000Z" itemprop="datePublished">2026-11-17</time>
+    <time style="display: none;" id="post-update-time">2026-11-18</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><p>XSS简介：跨站脚本（Cross-Site Scripting，XSS）是一种经常出现在 WEB 应用程序中的计算机安全漏洞，是由于 WEB 应用程序对用户的输入过滤不足而产生的。攻击者利用网站漏洞把恶意的脚本代码注入到网页中，当其他用户浏览这些网页时，就会执行其中的恶意代码，对受害用户可能采取 Cookies 资料窃取、会话劫持、钓鱼欺骗等各种攻击。</p>
+<p>主要类型有：反射型 XSS、持久型 XSS、DOM XSS</p>
+<p>利用方式：Cookies 窃取、会话劫持、钓鱼、网页挂马等等</p>
+<p>实战</p>
+<p>最基础的尝试 &lt;script&gt;alert(1)&lt;&#x2F;script&gt;</p>
+<p>1.htmlspecialchars($string,$flags,$charset,$double_encode)</p>
+<p>$string输入的字符串 </p>
+<p>$flags,默认ENT_COMPAT(ENT_COMPAT转义双引号，ENT_QUOTES同时转义单引号与双引号，ENT_NOQUOTES引号都不转义)</p>
+<p>&amp;-&gt;&amp;amp;”-&gt;&amp;quot;’-&gt;&amp;#039;&lt; -&gt; &amp;lt;&gt; -&gt; &amp;gt;</p>
+<p>作用：转义&amp;、””(双引号)、&lt;、&gt;、’’(单引号 )</p>
+<p> 方法 ：</p>
+<p>‘ onmouseover&#x3D;’alert(1)</p>
+<p>常用的事件：</p>
+<p>1.onmouseover&#x3D;’’&#x2F;“” 当鼠标指针移到元素上时触发</p>
+<p>2.onload&#x3D;’’&#x2F;“” 在标签加载完毕时触发</p>
+<p>3.onclick&#x3D;’’&#x2F;“” 点击触发</p>
+<p>4.onfocus&#x3D;’’&#x2F;“” 获取焦点触发（输入框） 可搭配autofocus(页面加载后，浏览器自动把焦点放到指定元素上)使用</p>
+<p>5.onkeydown按下按键瞬间触发  onkeypress按下产生字符的键触发 onkeyup按键抬起最后触发</p>
+<p>6.onsubmit&#x3D;’’&#x2F;“” 表单提交触发</p>
+<p>7.onchange&#x3D;’’&#x2F;“” 输入改变触发</p>
+<p><img src="/images/xss-labs/1.png" alt="image-20261117224338296"></p>
+<p>2.过滤&lt;,&gt;,但是没有转义 </p>
+<p>“ onmouseover&#x3D;”alert(1)</p>
+<p>知识点：str_replace($search,$replace,$subject[,&amp;$count]) （大小写敏感）</p>
+<p>$search：要找的字符串&#x2F;数组</p>
+<p>$replace：替换成什么&#x2F;数组</p>
+<p>$subject：原字符串（主体）</p>
+<p>&amp;$count（可选引用）：保存替换次数</p>
+<p><img src="/images/xss-labs/2.png" alt="image-20261117232433105"></p>
+<p>3.本题过滤&lt;script&gt;和on，可以使用javascript:伪协议</p>
+<p>“&gt;&lt;a href&#x3D;”javascript:alert(1)”&gt;点击我&lt;&#x2F;a&gt;</p>
+<p>知识点：（1）javascript:伪协议： </p>
+<p>javascript:code属于URL伪协议，放在href、src、location等，如果浏览器支持，点击&#x2F;触发时执行里面的代码</p>
+<p>（2）strtolower(string $string):string </p>
+<p> $string需要转小写的原字符串，作用：全部转小写</p>
+<p><img src="/images/xss-labs/3.png" alt="image-20261117232943656"></p>
+<p>4.看似严格过滤，实则一点也不严格，漏洞在于str_replace()区分大小写，可大小写混合绕过</p>
+<p>“ Onclick&#x3D;”alert(1)</p>
+<p><img src="/images/xss-labs/4.png" alt="image-20261117234602573"></p>
+<p>5.依旧看似严格过滤，漏洞在于它把script,on,src,data,href匹配删除，可双写绕过</p>
+<p> “ oonnmouseover&#x3D;”alert(1)</p>
+<p><img src="/images/xss-labs/5.png" alt="image-20261118105223870"></p>
+<p>6.从下图，这题主要考察关键词过滤和实体绕过（核心），”被过滤无法用引号闭合，href也被过滤，但是后端原本存在的不受影响，因此直接考虑javascript伪协议，但是script被过滤，考虑实体绕过</p>
+<p>java&amp;#115;cript:alert(1) </p>
+<p> 常用的HTML实体解码：</p>
+<p>&amp;lt; -&gt; &lt; </p>
+<p>&amp;#60; -&gt; &lt;（十进制）</p>
+<p>&amp;#x3C; -&gt; &lt;（十六进制）</p>
+<p>&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116; -&gt; alert</p>
+<p>&amp;#106; -&gt; j</p>
+<p>&amp;#115; -&gt; s</p>
+<p><img src="/images/xss-labs/6.png" alt="image-20261118111400915"></p>
+<p>7.在上一题的基础上加了个简单的if判断，绕过方法：用注释符注释掉后面添加的htttp:&#x2F;&#x2F;</p>
+<p>java&amp;#115;cript:alert(1)  &#x2F;&#x2F; <a target="_blank" rel="noopener" href="http://127.0.0.3/">http://127.0.0.3</a></p>
+<p><img src="/images/xss-labs/7.png" alt="image-20261118114854807"></p>
+<p>8.若不查看页面源码，本题会忽视真正的注入点，type&#x3D;”hidden”将注入点隐藏，根据HTML规范，前面（第一个）出现的type属性会生效，后面的重复属性会被直接忽略，因而我们 可以覆盖掉hidden</p>
+<p>(<a target="_blank" rel="noopener" href="http://127.0.0.3/level10.php?keyword=1&t_sort=%22+type=%22text%22+onclick=%22alert(1)">http://127.0.0.3/level10.php?keyword=1&amp;t_sort=&quot;+type=&quot;text&quot;+onclick=&quot;alert(1)</a>)</p>
+<p>拓展：HTML规范，HTML解析器在处理开始标签时，如果遇到同名属性（不区分大小写），会将其视为重复属性解析错误，并删除后出现的那个属性，只保留最先出现的</p>
+<p><img src="/images/xss-labs/8.png" alt="image-20261118115117876"></p>
+<p><img src="/images/xss-labs/9.png" alt="image-20261118115101974"></p>
+<p>9.这题需要抓包并修改referer</p>
+<p><img src="/images/xss-labs/10.png" alt="image-20261118120611028"></p>
+<p><img src="/images/xss-labs/11.png" alt="image-20261118120623056"></p>
+<p><img src="/images/xss-labs/12.png" alt="image-20261118121201576"></p>
+<p><img src="/images/xss-labs/13.png" alt="image-20261118121216340"></p>
+<p>10.真正的注入点改在User-Agent</p>
+<p><img src="/images/xss-labs/14.png" alt="image-20261118121424276"></p>
+<p><img src="/images/xss-labs/15.png" alt="image-20261118121449800"></p>
+<p>11.真正的注入点在Cookie</p>
+<p><img src="/images/xss-labs/16.png" alt="image-20261118121647344"></p>
+<p><img src="/images/xss-labs/17.png" alt="image-20261118121636455"></p>
+<p>12.考点是利用AngularJS库，并使用ng-include指令动态加载了src参数指定的内容。</p>
+<p>关键在于, 被包含的HTML文件里的&lt;script&gt;标签内容不会被执行</p>
+<p>知识点：Angular JS，class&#x3D;”ng-include:xxx”,Angular识别ng-include(需要单引号包裹文件名),去拉取指定文件并渲染内容，’（单引号）作为Angular表达式字符串包裹</p>
+<p>解：’level1.php?name&#x3D;&lt;img src&#x3D;x onerror&#x3D;alert(1)&gt;’</p>
+<p><img src="/images/xss-labs/18.png" alt="image-20261118122838475"></p>
+<p>13.空格过滤,  绕过方法有%0a(回车),&#x2F;,%0d(换行)</p>
+<p>&lt;svg%0aonload&#x3D;’alert(1)’&gt;</p>
+<p>知识点：&lt;svg&gt;标签是HTML内置标签，用来画矢量图（线条、图形、动画等），内部支持原生事件与动画，常与onload(svg渲染完毕自动触发)连用</p>
+<p><img src="/images/xss-labs/19.png" alt="image-20261118164124587"></p>
+<p>14.知识点：&lt;embed&gt;是HTML嵌入外部资源标签，作用：嵌入媒体、插件、Flash、音频视频等，没有闭合要求（自闭合），属性src,type,width,height,事件，如果src没有加引号是高危场景，如果拼接参数，可用空白（ &#x2F;%0a）跳出query，追加HTML事件属性</p>
+<p>Flash(embed当年的主力场景)彻底退役，但是该标签还在使用</p>
+<p>解：（%20是空格）</p>
+<p><img src="/images/xss-labs/20.png" alt="image-20261118170252217"></p>
+<p><img src="/images/xss-labs/21.png" alt="image-20261118165545880"></p>
+<p>拓展技巧：</p>
+<p>constructor.constructor(‘alert(1)’)() 本质是获取到了全局的Function构造函数</p>
+<p>constructor.constructor(‘throw new Error(“xss”)’)() 主动抛错</p>
+<p>window.onerror 是Javascript中一个非常核心的全局错误捕获事件</p>
+<p>挟持window.onerror，将其指向我们构造的恶意函数,window.onerror&#x3D;function(){constructor.constructor(‘alert(1)’)();};throw new Error(‘xss’);&#x2F;&#x2F;</p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" title="网络安全" data-aos="zoom-in">网络安全</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/XSS/" rel="tag" title="XSS">XSS</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SQLi-labs" class="lazyload">
+      <a href="/2026/11/17/SQLi-labs%E5%B0%8F%E7%BB%93/" aria-label="Next: SQLi-labs"  title="Next: SQLi-labs"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+          SQLi-labs
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2026
+        <span class="footer-info-sep rotate"></span>
+      tong-rainbow
+    </div>
+      <div>
+        <span class="icon-brush"></span>
+        6.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:29
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS"><span class="toc-number">1.</span> <span class="toc-text">XSS</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.png" data-sizes="auto" alt="tong-rainbow" class="lazyload">
+  <div class="sidebar-author-name">tong-rainbow</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">6</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">2</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "tong-rainbow",
+          title: "XSS-labs",
+          url: "http://example.com/2026/11/17/XSS-labs/",
+          excerpt: "",
+          description: "",
+          stripContent: "XSSXSS简介：跨站脚本（Cross-Site Scripting，XSS）是一种经常出现在 WEB 应用程序中的计算机安全漏洞，是由于 WEB 应用程序对用户的输入过滤不足而产生的。攻击者利用网站漏洞把恶意的脚本代码注入到网页中，当其他用户浏览这些网页时，就会执行其中的恶意代码，对受害用户可能采取 Cookies 资料窃取、会话劫持、钓鱼欺骗等各种攻击。 主要类型有：反射型 XSS、持久型 XSS、DOM XSS 利用方式：Cookies 窃取、会话劫持、钓鱼、网页挂马等等 实战 最基础的尝",
+          date: "Tue Nov 17 2026 22:12:03 GMT+0800",
+          updated: "Wed Nov 18 2026 17:24:55 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
